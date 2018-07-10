@@ -8,10 +8,71 @@
 </head>
 <body>
     <script>
-        function computerPlay () {
-            let option = ['rock', 'paper', 'scissor']
-            Math.random()
+        function computerSelection () {
+            let option = ['Rock', 'Paper', 'Scissors']
+            let index = Math.floor(Math.random()*option.length)
+            return option[index].toLowerCase()
         }
+
+        function playerSelection () {
+            let option = prompt('Insert your option: (Rock, Paper, Scissors)')
+            return option.toLowerCase()
+        }
+
+        function playRound (player, computer) {
+            switch (player) {
+                case 'rock':
+                    if (computer == 'scissors') {
+                        playerPoints++
+                        return "You Win! Rock beats Scissors."
+                    } else if (computer == 'paper') {
+                        computerPoints++
+                        return "You Lose! Paper beats Rock."
+                    } else {
+                        return "It's a tie."
+                    }
+                    break
+                case 'paper':
+                    if (computer == 'rock') {
+                        playerPoints++
+                        return "You Win! Paper beats Rock."
+                    } else if (computer == 'scissors') {
+                        computerPoints++
+                        return "You Lose! Scissors beats Paper."
+                    } else {
+                        return "It's a tie."
+                    }
+                    break
+                case 'scissors':
+                    if (computer == 'paper') {
+                        playerPoints++
+                        return "You Win! Scissors beats Paper."
+                    } else if (computer == 'rock') {
+                        computerPoints++
+                        return "You Lose! Rock beats Scissors."
+                    } else {
+                        return "It's a tie."
+                    }
+            }
+        }
+
+        function game (x) {
+            for (let i = 0; i < x; i++) {
+                console.log(playRound(playerSelection(), computerSelection()))
+                console.log('Player: ' + playerPoints + ', Computer: ' + computerPoints)
+            }
+            if (playerPoints > computerPoints) {
+                console.log ('\n>>> You win!')
+            } else if (computerPoints > playerPoints) {
+                console.log ('\n>>> Computer win')
+            } else {
+                console.log ("\n>>> It's a tie")
+            }
+        }
+        
+        let playerPoints = 0
+        let computerPoints = 0
+        game(5)
     </script>
 </body>
 </html>
